@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>注册成功, 页面跳转中</title>
+
+<style>
+#wait {
+	color: red;
+}
+
+#main {
+	text-align: center;
+	height: 800px;
+	line-height: 800px;
+}
+</style>
+
+<script src="<{$smarty.const.RESOURCE_PATH}>Home/js/jquery.js" type="text/javascript"></script>
+<script>
+$(function() {
+	var wait = setInterval(function() {
+		var time = $("#wait").text()-1;
+		if(time <= 0) {
+			location.href = $("a").attr("href");
+			clearInterval(wait);
+		}
+		$("#wait").text(time);
+	}, 1000);
+});
+</script>
+</head>
+<body>
+<div id="main"><{$message}>，<span id="wait"><{$waitSecond}></span>后跳转到登陆页面，如未跳转，可以<a href="<{$jumpUrl}>">点击此处</a></div>
+</body>
+</html>
